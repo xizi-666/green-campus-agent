@@ -39,10 +39,12 @@ def _load_waste_data() -> dict:
 
 
 def get_current_time() -> str:
-    """获取当前的本地日期、时间和星期。回答与"今天/现在/几号/星期几"有关的问题时使用，写报告落款时也用。"""
+    """获取当前的本地日期、时间和星期，并标注本学期周数。回答与"今天/现在/几号/星期几/上周/本周"有关的问题时使用，写报告落款时也用。学期从 2026-09-01 开始，每周一起算，用于定位"上周/本周"对应的用电数据周数。"""
     now = datetime.now()
     weekday = "一二三四五六日"[now.weekday()]
-    return now.strftime("%Y-%m-%d %H:%M:%S") + f" 星期{weekday}"
+    term_start = datetime(2026, 9, 1)
+    week_num = (now - term_start).days // 7 + 1
+    return now.strftime("%Y-%m-%d %H:%M:%S") + f" 星期{weekday}" + f" ｜ 本学期第 {week_num} 周"
 
 
 _OPS = {

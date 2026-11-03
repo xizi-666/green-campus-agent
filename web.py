@@ -33,7 +33,7 @@ from agent import BASE_DIR, build_agent, stream_events
 
 WORKSPACE = BASE_DIR / "workspace"
 
-st.set_page_config(page_title="Deep Agents 课程助教", page_icon="🧠", layout="wide")
+st.set_page_config(page_title="绿电管家 · 绿色校园节能助手", page_icon="🌱", layout="wide")
 
 
 # ------------------------------------------------------------------
@@ -206,14 +206,15 @@ with st.sidebar:
 # ------------------------------------------------------------------
 # 主区域：对话
 # ------------------------------------------------------------------
-st.title("🧠 Deep Agents 课程助教")
-st.caption("LangChain Deep Agents ＋ 阿里百炼 ｜ 流式输出 · 历史会话 · Skills · MCP · 子代理")
+st.title("🌱 绿电管家 · 绿色校园节能助手")
+st.caption("LangChain Deep Agents ＋ 智谱 GLM-4-Flash ｜ 流式输出 · 历史会话 · Skills · MCP · 子代理")
 
 EXAMPLES = [
-    "今天星期几？计算 2**20-1",
-    "课程一共有哪些实验？demo_2 讲什么？",
-    "讲解一下 /tools.py 这个文件",
-    "帮我写一份 demo_5 的实验报告",
+    "查一下玉兰苑1号楼302最近四周的用电量，算算总共多少度",
+    "上周哪栋楼用电最多？给我一份全校用电排名",
+    "外卖餐盒、废旧电池和快递纸箱分别是什么垃圾？",
+    "空调开多少度有什么规定？",
+    "帮我生成本周的宿舍用电节能周报",
 ]
 
 for msg in messages:

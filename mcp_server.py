@@ -54,15 +54,26 @@ def list_buildings() -> dict:
 
 
 @mcp.tool()
-def building_power_ranking(week: int) -> str:
+def building_power_ranking(week: int = 0) -> str:
     """统计某一周全校各楼栋的用电排名（按间均用电量降序）。
 
     Args:
-        week: 周数（1-8），例如 8 表示第 8 周
+        week: 周数（1-8），例如 8 表示第 8 周。不传或传 0 时默认返回最新一周（第 8 周）。
     """
     data = _load_power_data()
     power_map = data.get("data", {})
     rooms_map = data.get("rooms", {})
+
+    # 找最新一周的周数
+    max_week = 0
+    for bld, rooms in power_map.items():
+        for room, records in rooms.items():
+            if len(records) > max_week:
+                max_week = len(records)
+    if week <= 0 or week > max_week:
+        week = max_week
+    week_label = "最新" if week == max_week else f"第 {week}"
+    week_for_records = week
 
     rankings = []
     for bld in data.get("buildings", []):
