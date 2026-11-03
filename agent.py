@@ -220,7 +220,7 @@ async def build_agent():
         "custom_tools": [t.__name__ for t in CUSTOM_TOOLS],
         "mcp_tools": [t.name for t in mcp_tools],
         "skills": sorted(p.name for p in (BASE_DIR / "skills").iterdir() if (p / "SKILL.md").exists()),
-        "subagents": ["researcher", "critic", "general-purpose"],
+        "subagents": ["data-analyst", "critic", "general-purpose"],
         "warnings": warnings,
     }
     return agent, info
